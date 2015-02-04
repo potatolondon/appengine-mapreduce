@@ -13,13 +13,13 @@ import setuptools
 
 # To debug, set DISTUTILS_DEBUG env var to anything.
 setuptools.setup(
-    name="GoogleAppEngineMapReduce",
+    name="GoogleAppEngineMapReduce-Potatoified",
     version="1.9.16.1",
     packages=setuptools.find_packages(),
     author="Google App Engine",
     author_email="app-engine-pipeline-api@googlegroups.com",
     keywords="google app engine mapreduce data processing",
-    url="https://code.google.com/p/appengine-mapreduce/",
+    url="https://github.com/potatolondon/appengine-mapreduce.git",
     license="Apache License 2.0",
     description=("Enable MapReduce style data processing on "
                  "App Engine"),
@@ -28,9 +28,12 @@ setuptools.setup(
     exclude_package_data={"": ["README"]},
     install_requires=[
         "GoogleAppEngineCloudStorageClient >= 1.9.15",
-        "GoogleAppEnginePipeline >= 1.9.15",
+        "GoogleAppEnginePipeline-Potatoified",
         "Graphy >= 1.0.0",
         "mock >= 1.0.1",
         "mox >= 0.5.3",
-        ]
+    ],
+    dependency_links=[
+        "git+https://github.com/potatolondon/appengine-pipelines.git"
+    ]
 )
