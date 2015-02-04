@@ -13,7 +13,7 @@ import setuptools
 
 # To debug, set DISTUTILS_DEBUG env var to anything.
 setuptools.setup(
-    name="GoogleAppEngineMapReduce-Potatoified",
+    name="GoogleAppEngineMapReducePotatoified",
     version="1.9.16.1",
     packages=setuptools.find_packages(),
     author="Google App Engine",
@@ -34,6 +34,6 @@ setuptools.setup(
         "mox >= 0.5.3",
     ],
     dependency_links=[
-        "git+https://github.com/potatolondon/appengine-pipelines.git"
+        "git+https://github.com/potatolondon/appengine-pipelines.git#egg=GoogleAppEnginePipelinePotatoified"
     ]
 )
