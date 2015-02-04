@@ -28,7 +28,7 @@ setuptools.setup(
     exclude_package_data={"": ["README"]},
     install_requires=[
         "GoogleAppEngineCloudStorageClient >= 1.9.15",
-        "GoogleAppEnginePipeline-Potatoified",
+        "GoogleAppEnginePipelinePotatoified",
         "Graphy >= 1.0.0",
         "mock >= 1.0.1",
         "mox >= 0.5.3",
