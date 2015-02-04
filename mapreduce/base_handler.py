@@ -23,8 +23,7 @@
 
 import httplib
 import logging
-
-import simplejson
+import json
 
 try:
   from mapreduce import pipeline_base
@@ -224,7 +223,7 @@ class JsonHandler(webapp.RequestHandler):
 
     self.response.headers["Content-Type"] = "text/javascript"
     try:
-      output = simplejson.dumps(self.json_response, cls=json_util.JsonEncoder)
+      output = json.dumps(self.json_response, cls=json_util.JsonEncoder)
     # pylint: disable=broad-except
     except Exception, e:
       logging.exception("Could not serialize to JSON")

@@ -3,7 +3,7 @@
 import copy
 import datetime
 import logging
-import simplejson
+import json
 
 from google.appengine.api import datastore_errors
 from google.appengine.api import datastore_types
@@ -13,7 +13,7 @@ from google.appengine.ext import db
 # pylint: disable=invalid-name
 
 
-class JsonEncoder(simplejson.JSONEncoder):
+class JsonEncoder(json.JSONEncoder):
   """MR customized json encoder."""
 
   TYPE_ID = "__mr_json_type"
@@ -28,7 +28,7 @@ class JsonEncoder(simplejson.JSONEncoder):
     return super(JsonEncoder, self).default(o)
 
 
-class JsonDecoder(simplejson.JSONDecoder):
+class JsonDecoder(json.JSONDecoder):
   """MR customized json decoder."""
 
   def __init__(self, **kwargs):
@@ -109,7 +109,7 @@ class JsonMixin(object):
     """
     json = self.to_json()
     try:
-      return simplejson.dumps(json, sort_keys=True, cls=JsonEncoder)
+      return json.dumps(json, sort_keys=True, cls=JsonEncoder)
     except:
       logging.exception("Could not serialize JSON: %r", json)
       raise
@@ -124,7 +124,7 @@ class JsonMixin(object):
     Returns:
       New instance of the class with data loaded from json string.
     """
-    return cls.from_json(simplejson.loads(json_str, cls=JsonDecoder))
+    return cls.from_json(json.loads(json_str, cls=JsonDecoder))
 
 
 class JsonProperty(db.UnindexedProperty):
@@ -166,7 +166,7 @@ class JsonProperty(db.UnindexedProperty):
       json_value = value.to_json()
     if not json_value:
       return None
-    return datastore_types.Text(simplejson.dumps(
+    return datastore_types.Text(json.dumps(
         json_value, sort_keys=True, cls=JsonEncoder))
 
   def make_value_from_datastore(self, value):
@@ -181,7 +181,7 @@ class JsonProperty(db.UnindexedProperty):
 
     if value is None:
       return None
-    json = simplejson.loads(value, cls=JsonDecoder)
+    json = json.loads(value, cls=JsonDecoder)
     if self.data_type == dict:
       return json
     return self.data_type.from_json(json)

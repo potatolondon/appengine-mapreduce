@@ -30,7 +30,6 @@ setuptools.setup(
         "GoogleAppEngineCloudStorageClient >= 1.9.15",
         "GoogleAppEnginePipeline >= 1.9.15",
         "Graphy >= 1.0.0",
-        "simplejson >= 3.6.5",
         "mock >= 1.0.1",
         "mox >= 0.5.3",
         ]

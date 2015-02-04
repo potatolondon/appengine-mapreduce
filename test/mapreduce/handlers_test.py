@@ -40,7 +40,7 @@ import unittest
 
 import mock
 import mox
-import simplejson
+import json
 
 from google.appengine.api import apiproxy_stub_map
 from google.appengine.api import datastore
@@ -1133,7 +1133,7 @@ class KickOffJobHandlerTest(testutil.HandlerTestBase):
     # Serialized new readers should be the same as serialized old ones.
     self.assertEqual(serialized_readers_entity.payload,
                      new_serialized_readers_entity.payload)
-    self.assertEqual(simplejson.dumps([i.to_json_str() for i in new_readers]),
+    self.assertEqual(json.dumps([i.to_json_str() for i in new_readers]),
                      serialized_readers_entity.payload)
 
   def testSaveState(self):
@@ -2845,7 +2845,7 @@ class CleanUpJobTest(testutil.HandlerTestBase):
     self.assertTrue(db.get(key))
     self.handler.request.set("mapreduce_id", self.mapreduce_id)
     self.handler.post()
-    result = simplejson.loads(self.handler.response.out.getvalue())
+    result = json.loads(self.handler.response.out.getvalue())
     self.assertEquals({"status": ("Job %s successfully cleaned up." %
                                   self.mapreduce_id) },
                       result)
