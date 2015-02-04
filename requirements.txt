@@ -1,5 +1,5 @@
 GoogleAppEngineCloudStorageClient
-GoogleAppEnginePipeline
+git+https://github.com/potatolondon/appengine-pipelines.git
 Graphy
 simplejson
 mock
