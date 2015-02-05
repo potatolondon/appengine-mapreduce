@@ -107,11 +107,11 @@ class JsonMixin(object):
     Returns:
       json representation as string.
     """
-    json = self.to_json()
+    js = self.to_json()
     try:
-      return json.dumps(json, sort_keys=True, cls=JsonEncoder)
+      return json.dumps(js, sort_keys=True, cls=JsonEncoder)
     except:
-      logging.exception("Could not serialize JSON: %r", json)
+      logging.exception("Could not serialize JSON: %r", js)
       raise
 
   @classmethod
@@ -181,10 +181,10 @@ class JsonProperty(db.UnindexedProperty):
 
     if value is None:
       return None
-    json = json.loads(value, cls=JsonDecoder)
+    js = json.loads(value, cls=JsonDecoder)
     if self.data_type == dict:
-      return json
-    return self.data_type.from_json(json)
+      return js
+    return self.data_type.from_json(js)
 
   def validate(self, value):
     """Validate value.
@@ -200,7 +200,7 @@ class JsonProperty(db.UnindexedProperty):
     """
     if value is not None and not isinstance(value, self.data_type):
       raise datastore_errors.BadValueError(
-          "Property %s must be convertible to a %s instance (%s)" % 
+          "Property %s must be convertible to a %s instance (%s)" %
           (self.name, self.data_type, value))
     return super(JsonProperty, self).validate(value)
 
