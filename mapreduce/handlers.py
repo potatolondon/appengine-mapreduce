@@ -1436,7 +1436,7 @@ class KickOffJobHandler(base_handler.TaskQueueHandler):
     if serialized_input_readers is None:
       readers = input_reader_class.split_input(split_param)
     else:
-      readers = [input_reader_class.from_json_str(json) for json in
+      readers = [input_reader_class.from_json_str(js) for js in
                  json.loads(serialized_input_readers.payload)]
 
     if not readers:
