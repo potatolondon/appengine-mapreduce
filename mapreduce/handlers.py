@@ -571,7 +571,7 @@ class MapperWorkerCallbackHandler(base_handler.HugeTaskHandler):
       elif isinstance(entity, ndb.Model):
         shard_state.last_work_item = repr(entity.key)
       else:
-        shard_state.last_work_item = repr(entity)[:100]
+        shard_state.last_work_item = unicode(entity)[:100]
 
       processing_limit -= 1
 
